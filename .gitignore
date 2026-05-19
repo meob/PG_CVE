@@ -1,0 +1,30 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Data files & Archives
+archive/
+docs/postgresql_cves_*.json
+!docs/postgresql_cves.json
+postgresql_cves_*.json
+
+# Environment Variables
+.env
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Project specific
+staff/
+old/
+.vscode/
+.idea/
+*.log

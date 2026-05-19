@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="glider18.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PostgreSQL CVE Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            
+            /* CVSS Traffic-Light & Alert Colors */
+            --cvss-critical: #8b0000; 
+            --cvss-high: #ff4500;     
+            --cvss-medium: #ffa500;   
+            --cvss-low: #2ea44f;      
+            --alert-red: #d9534f;
+            --alert-bg: #fdf7f7;
+        }
+
+body { 
+    opacity:  1.0;
+    border-radius: 20px;
+    font-size:100%;
+    COLOR: #6d6d6d;
+    BACKGROUND-COLOR: White;
+    FONT-FAMILY: Verdana, Arial, Sans-Serif;
+}
+h1 {
+    FONT-WEIGHT: bold;
+    font-size:3.0em;
+    COLOR: #427dff;
+    FONT-FAMILY: Verdana, Arial, Sans-Serif;
+    BACKGROUND-COLOR: #ffffff;
+    text-align: center;
+}
+h2 {
+    FONT-WEIGHT: bold;
+    font-size:1.5em;
+    COLOR: #427dff;
+    FONT-FAMILY: Verdana, Arial, Sans-Serif;
+    BACKGROUND-COLOR: #e2ecf5;
+}
+h3 {
+    COLOR: #427dff;
+}
+.foot {
+    font-size:0.6em;
+    COLOR: #4e4e4e;
+    BACKGROUND-COLOR: White;
+    FONT-STYLE: italic;
+    FONT-FAMILY: Verdana, Arial, Sans-Serif;
+}
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .subtitle { color: #7f8c8d; margin-top: 0; margin-bottom: 25px; }
+
+        .selector-box {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .input-group { display: flex; align-items: center; gap: 10px; }
+        label { font-weight: bold; }
+        
+        select {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-size: 16px;
+            background-color: #fff;
+            cursor: pointer;
+            min-width: 220px;
+        }
+        select:disabled { background-color: #e9ecef; cursor: not-allowed; }
+
+        /* Yanked Version Alert Banner */
+        .yanked-banner {
+            background-color: var(--alert-bg);
+            border-left: 5px solid var(--alert-red);
+            color: #b94a48;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background-color: #f8f9fa; font-weight: 600; color: #2c3e50; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            min-width: 40px;
+        }
+        .badge-critical { background-color: var(--cvss-critical); }
+        .badge-high { background-color: var(--cvss-high); }
+        .badge-medium { background-color: var(--cvss-medium); }
+        .badge-low { background-color: var(--cvss-low); }
+
+        .exploit-badge {
+            background-color: var(--alert-red);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 10px;
+            display: inline-block;
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker { 50% { opacity: 0.4; } }
+
+        .cve-link { color: #3498db; text-decoration: none; font-weight: 600; }
+        .cve-link:hover { text-decoration: underline; }
+        .no-data { text-align: center; padding: 30px; color: #7f8c8d; background: var(--card-bg); border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="db-title">PG CVE Dashboard</h1>
+    <p class="subtitle">Quick security check for database deployments. Critical warnings highlighted in red.</p>
+
+    <div class="selector-box">
+        <div class="input-group">
+            <label for="major-select">Major Version:</label>
+            <select id="major-select">
+                <option value="">-- Loading... --</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="minor-select">Minor Version:</label>
+            <select id="minor-select" disabled>
+                <option value="">-- Select Major First --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Yanked Version Notification Banner -->
+    <div id="yanked-alert" class="yanked-banner"></div>
+
+    <div id="table-container"></div>
+</div>
+
+<p style="text-align:right"><i>Threat list update: 2026-05-14</i></p>
+
+<hr>
+<footer>
+    <div>
+        <h3>Data Sources & Threat Intelligence</h3>
+        <p>Vulnerability and release data are compiled via web scraping and manual curation, relying exclusively on official and verified sources:</p>
+        <ul class="sources-list">
+            <li><strong>PostgreSQL Security Matrix:</strong> <a href="https://www.postgresql.org/support/security/" target="_blank">postgresql.org/support/security/</a></li>
+            <li><strong>Mitre CVE & NVD (NIST):</strong> <a href="https://nvd.nist.gov/" target="_blank">nvd.nist.gov</a></li>
+            <li><strong>OpenCVE:</strong> <a href="https://app.opencve.io/cve/?vendor=postgresql" target="_blank">app.opencve.io/cve/</a></li>
+            <li><strong>CISA KEV Catalog (Known Exploited Vulnerabilities):</strong> <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank">cisa.gov/kev</a></li>
+        </ul>
+    </div>
+<p>
+Detailed release information is available in <a href="https://www.postgresql.org/docs/release/" target="_blank">the official PostgreSQL release notes</a>; for a shorter overview, see <a href="https://www.meo.bogliolo.name/white/unix/trans.htm#post" target="_blank">Your PostgreSQL Stinks!</a>
+</p>
+
+    <div class="footer-section bg-warning-light">
+        <h3>Disclaimer & Limitation of Liability</h3>
+	<p>Database security extends far beyond software versioning alone.
+        This tool is provided <strong>"as is"</strong>, for informational and quick-reference purposes only. While the parsing logic aims for zero false negatives based on official records, absolute accuracy, completeness, and real-time synchronization (with respect to zero-day vulnerabilities or sudden upstream feed changes) cannot be guaranteed. Use of this information is at your own risk. The developer assumes no liability for architectural decisions, missing patches, downtime, data loss, or security breaches resulting from the use or inaccuracy of this dashboard.</p>
+    </div>
+
+    <div class="footer-section">
+        <h3>Credits & Archive</h3>
+        <p>Developed and curated by <a href="https://www.meo.bogliolo.name/en/" target="_blank">Meo Bogliolo</a>.
+        For historical EOL data (pre-v10) and full records, visit the <a href="https://www.meo.bogliolo.name/white/oracle/pg_cve.htm" target="_blank">Complete Archive</a>.</p>
+        <p>Source code available on <a href="https://github.com/meob/PG_CVE" target="_blank">GitHub</a>.</p>
+    </div>
+</footer>
+
+<hr />
+<p class="foot">
+Title: <b>PG CVE Dashboard</b><br />
+Level: Advanced <meter min="1" max="5" value="3">(3/5)</meter><br />
+Date: <meta itemprop="datePublished" content="2026-05-14"> 
+      <meta itemprop="dateCreated"   content="2026-04-01">1st April 2026<br />
+Version: 1.0.1 - <meta itemprop="dateModified" content="2026-05-14">14th May 2026<br />
+Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
+</p>
+
+<!-- With a little help from AI Friends... -->
+<script>
+    const jsonDataSource = 'postgresql_cves.json'; 
+    let dbData = null;
+
+    const majorSelect = document.getElementById('major-select');
+    const minorSelect = document.getElementById('minor-select');
+    const yankedAlert = document.getElementById('yanked-alert');
+    const tableContainer = document.getElementById('table-container');
+    const dbTitle = document.getElementById('db-title');
+
+    fetch(jsonDataSource)
+        .then(response => response.json())
+        .then(data => {
+            dbData = data;
+            initDashboard();
+        })
+        .catch(error => {
+            tableContainer.innerHTML = `<div class="no-data">Error loading JSON configuration.</div>`;
+        });
+
+    function initDashboard() {
+        if (!dbData) return;
+        dbTitle.textContent = `${dbData.database} CVE Dashboard`;
+
+        // Populate Major Select + EOL Detection Warning Tag
+        majorSelect.innerHTML = '<option value="">-- Select Major --</option>';
+        dbData.major_versions.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.version;
+            option.textContent = item.eol ? `Release ${item.version}.x (⛔️ EOL)` : `Release ${item.version}.x`;
+            if(item.eol) option.style.color = 'var(--alert-red)';
+            majorSelect.appendChild(option);
+        });
+
+        majorSelect.addEventListener('change', (e) => { handleMajorChange(e.target.value); });
+        minorSelect.addEventListener('change', (e) => { renderCVEs(majorSelect.value, e.target.value); });
+    }
+
+    function handleMajorChange(majorVersion) {
+        minorSelect.innerHTML = '<option value="">-- Select Minor --</option>';
+        tableContainer.innerHTML = '';
+        yankedAlert.style.display = 'none'; // reset alert
+
+        if (!majorVersion) { minorSelect.disabled = true; return; }
+
+        const minorVersions = Object.keys(dbData.cve_matrix[majorVersion] || {});
+        if (minorVersions.length === 0) {
+            minorSelect.innerHTML = '<option value="">No minor versions</option>';
+            minorSelect.disabled = true;
+            return;
+        }
+
+        minorVersions.sort((a, b) => b.localeCompare(a, undefined, {numeric: true, sensitivity: 'base'}));
+
+        minorVersions.forEach(minor => {
+            const option = document.createElement('option');
+            option.value = minor;
+            // Highlight inside dropdown if the specific minor version is yanked
+            if (dbData.yanked_versions && dbData.yanked_versions[minor]) {
+                option.textContent = `${minor} (⛔️ BAD RELEASE)`;
+                option.style.color = 'var(--alert-red)';
+            } else {
+                option.textContent = minor;
+            }
+            minorSelect.appendChild(option);
+        });
+
+        minorSelect.disabled = false;
+    }
+
+function renderCVEs(major, minor) {
+    tableContainer.innerHTML = '';
+    yankedAlert.style.display = 'none';
+
+    if (!major || !minor) return;
+
+    if (dbData.yanked_versions && dbData.yanked_versions[minor]) {
+        yankedAlert.textContent = dbData.yanked_versions[minor];
+        yankedAlert.style.display = 'block';
+    }
+
+    const currentMajorConfig = dbData.major_versions.find(m => m.version === major);
+    const isEol = currentMajorConfig ? currentMajorConfig.eol : false;
+
+    const cves = dbData.cve_matrix[major]?.[minor] || [];
+
+    if (cves.length === 0 && !isEol) {
+        tableContainer.innerHTML = `<div class="no-data">No known vulnerable CVEs reported for version ${minor}.</div>`;
+        return;
+    }
+
+    cves.sort((a, b) => b.cvss - a.cvss);
+
+    let htmlTable = `
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 10%">CVSS</th>
+                    <th style="width: 25%">CVE ID</th>
+                    <th style="width: 65%">Description / Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    if (isEol) {
+        htmlTable += `
+            <tr>
+                <td><span class="badge badge-critical">10.0</span></td>
+                <td>
+                    <strong style="color: var(--cvss-critical);">CVE-EOL-WARNING</strong>
+                    <span class="exploit-badge" style="animation: blinker 1s linear infinite;">⚠️ SECURITY RISK</span>
+                </td>
+                <td>
+                    <strong>UNSUPPORTED END-OF-LIFE RELEASE.</strong> 
+                    No new security patches or CVEs are backported to this branch. Any vulnerability discovered in newer versions (including active exploits) potentially affects this installation. Upgrade immediately to a supported major version.
+                </td>
+            </tr>
+        `;
+    }
+
+    cves.forEach(cve => {
+        let badgeClass = 'badge-low';
+        if (cve.cvss >= 9.0) badgeClass = 'badge-critical';
+        else if (cve.cvss >= 7.0) badgeClass = 'badge-high';
+        else if (cve.cvss >= 4.0) badgeClass = 'badge-medium';
+
+        const exploitTag = cve.known_exploit ? `<span class="exploit-badge">⚠️ EXPLOIT KNOWN</span>` : '';
+
+        htmlTable += `
+            <tr>
+                <td><span class="badge ${badgeClass}">${cve.cvss.toFixed(1)}</span></td>
+                <td>
+                    <a href="${cve.link}" target="_blank" class="cve-link">${cve.id}</a>
+                    ${exploitTag}
+                </td>
+                <td>${cve.summary}</td>
+            </tr>
+        `;
+    });
+
+    htmlTable += '</tbody></table>';
+    tableContainer.innerHTML = htmlTable;
+}
+</script>
+
+</body>
+</html>
