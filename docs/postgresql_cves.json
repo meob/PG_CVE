@@ -75,11 +75,14 @@
     "17.8": "Serious bugs introduced for the fix to some CVEs.",
     "16.12": "Serious bugs introduced for the fix to some CVEs.",
     "15.16": "Serious bugs introduced for the fix to some CVEs.",
+    "15.0": "Disk space leak when dropping large (multi‑file) tables.",
     "14.21": "Serious bugs introduced for the fix to some CVEs.",
     "14.3": "Data corruption using CONCURRENTLY.",
     "14.2": "Data corruption using CONCURRENTLY.",
     "14.1": "Data corruption using CONCURRENTLY.",
     "14.0": "Data corruption using CONCURRENTLY.",
+    "13.1": "substring() misbehavior with invalid/negative length.",
+    "13.0": "substring() misbehavior with invalid/negative length.",
     "12.1": "Query planner regression on partitioned tables.",
     "11.2": "JIT compiler regression causing backend server crash.",
     "9.5.1": "Bug on text indexes optimization.",
@@ -89,6 +92,8 @@
     "9.3.2": "Serious affecting 9.3 only.",
     "9.3.1": "Serious affecting 9.3 only.",
     "9.3.0": "Serious affecting 9.3 only.",
+    "9.2.1": "Planner regression in strict join clauses.",
+    "9.2.0": "Planner regression in strict join clauses.",
     "6.6.6": "Diabolic bug."
   },
   "cve_matrix": {
