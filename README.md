@@ -46,10 +46,12 @@ This will generate/update the `docs/postgresql_cves.json` file.
 ## 🚀 Proposed Optimizations (Roadmap)
 The following improvements are planned for future versions, maintaining the manual validation approach:
 
-1.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
-2.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.
-3.  **Data Persistence:** Integrate a `last_updated` field in the JSON.
-4.  **Export Formats:** Add generation of reports in Markdown or CSV format.
+1.  **Deep-linking Support:** Allow passing a specific version via URL parameter (e.g., `index.html?version=15.3`) to automatically select and render its CVE status.
+2.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
+3.  **Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.
+4.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
+5.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.
+6.  **Export Formats:** Add generation of reports in Markdown or CSV format.
 
 ---
 
