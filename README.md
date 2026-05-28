@@ -5,15 +5,20 @@
 
 ---
 
-## ✨ Recent Updates (v1.0.2)
-- **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
-
----
-
 ## 🎯 Objectives
 - **Simplicity:** Provide a static HTML dashboard with no server-side dependencies.
 - **Precision:** Integrate automatic scraping with manual expert curation to identify real-world exploits and serious regression bugs.
 - **Decision Support:** Assist DBAs in deciding if and when to upgrade a specific installation.
+
+---
+
+## 🌐 Live Dashboard & Usage
+The interactive dashboard is publicly available at the following address:
+👉 **[PostgreSQL CVE Dashboard](https://meob.github.io/PG_CVE/)**
+
+### Searching by Version (Deep-linking)
+You can query a specific PostgreSQL version directly via the `version` URL parameter. This is useful for linking directly to a version's security status from other documentation or reports:
+- `https://meob.github.io/PG_CVE/?version=15.3`
 
 ---
 
@@ -45,6 +50,11 @@ Run the script every 3 months or upon the release of new security advisories:
 python src/fetch_pg_cve.py
 ```
 This will generate/update the `docs/postgresql_cves.json` file.
+
+---
+
+## ✨ Recent Updates (v1.0.2)
+- **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
 
 ---
 
