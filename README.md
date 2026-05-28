@@ -1,7 +1,12 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.1**
+**Version 1.0.2**
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
+
+---
+
+## ✨ Recent Updates (v1.0.2)
+- **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
 
 ---
 
@@ -46,12 +51,11 @@ This will generate/update the `docs/postgresql_cves.json` file.
 ## 🚀 Proposed Optimizations (Roadmap)
 The following improvements are planned for future versions, maintaining the manual validation approach:
 
-1.  **Deep-linking Support:** Allow passing a specific version via URL parameter (e.g., `index.html?version=15.3`) to automatically select and render its CVE status.
-2.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
-3.  **Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.
-4.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
-5.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.
-6.  **Export Formats:** Add generation of reports in Markdown or CSV format.
+1.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
+2.  **Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.
+3.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
+4.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.
+5.  **Export Formats:** Add generation of reports in Markdown or CSV format.
 
 ---
 

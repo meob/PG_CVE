@@ -61,22 +61,27 @@ YANKED_VERSIONS = {
 
 # CVE with known Exploits
 KNOWN_EXPLOITS = [
-    "CVE-2025-1094",   # SQLi in psql/libpq, RCE
+    "CVE-2025-1094",   # SQLi in psql/libpq, RCE; exploited in the wild
     "CVE-2024-10979",  # PL/Perl arbitrary code execution
     "CVE‑2023‑2454",   # Arbitrary code execution via CREATE SCHEMA
-    "CVE-2022-1552",   # Autovacuum privilege escalation
+    "CVE-2022-1552",   # Autovacuum privilege escalation; exploited in the wild
     "CVE‑2020‑25695",  # SQL injection in PostgreSQL
     "CVE-2019-10130",  # Tablesampler security bypass
-    "CVE‑2019‑9193",   # COPY TO/FROM PROGRAM, RCE
-    "CVE‑2018‑10915",  # PL/Perl arbitrary code execution
+    "CVE‑2019‑9193",   # COPY TO/FROM PROGRAM, RCE; exploited in the wild; used in pentests
+    "CVE‑2018‑10915",  # PL/Perl arbitrary code execution; used in pentests
     "CVE‑2018‑1115",   # COPY input validation
     "CVE-2017-14798",  # SUSE privilege escalation (not a PG CVE)
-    "CVE‑2017‑8806",   # PL/Python code execution
-    "CVE‑2016‑5729",   # Buffer overflow in seg
+    "CVE‑2017‑8806",   # PL/Python code execution; used in pentests
+    "CVE‑2016‑5729",   # Buffer overflow in seg; used in pentests 
     "CVE-2009-0922",   # Multiple vulnerabilities
     "CVE-2005-0245",   # Conversion Encoding Remote DOS
-    "CVE‑1970‑0000"    # Epoch
+    "CVE‑1970‑0000"    # Epoch placeholder
 ]
+
+# Other CVE related to PostgreSQL
+# CVE-2025-13780	PgAdmin, RCE
+# CVE-2026-9082		Drupal Core SQL Injection Vulnerability
+
 
 # ==========================================
 # UTILS
