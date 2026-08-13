@@ -30,8 +30,8 @@ silently destroys manual edits. Keep them in sync (see §3).
 1. Read the current data in the JSON to know the baseline.
 2. Bump `max_minor` in `get_all_minor_releases()` (`src/fetch_pg_cve.py:88`)
    for every **active** major so the upcoming minors exist in the matrix:
-   - current cycle → `18.5 / 17.11 / 16.15 / 15.19 / 14.24`
-   - example: `if major == "18": max_minor = 5`
+   - current cycle → `18.6 / 17.11 / 16.15 / 15.19 / 14.24`
+   - example: `if major == "18": max_minor = 6`
    - EOL majors keep their last value (e.g. `13` stays `23`).
 3. Sync `TRACKED_MAJORS` and `YANKED_VERSIONS` with the curated JSON, so a
    regeneration does not revert manual edits.
@@ -48,7 +48,10 @@ silently destroys manual edits. Keep them in sync (see §3).
 3. **Major reached EOL?** → flip its `"eol"` flag to `true` in `TRACKED_MAJORS`.
 4. **Check `YANKED_VERSIONS`:** if the freshly released minor was pulled
    (e.g. "serious bugs introduced for the fix to some CVEs"), add it here with
-   the reason. This drives the warning banner in the dashboard.
+   the reason. This drives the warning banner in the dashboard. Also add any
+   minor that was **skipped and never released** (e.g. 18.5 in Aug 2026) with
+   the text `Never released, due to a regression discovered post-wrap.` so the
+   dashboard warns users who try to select it.
 5. **Check `KNOWN_EXPLOITS`:** add any new CVE with a confirmed public exploit.
    Keep the comment explaining the exploit.
 6. **Regenerate the data** (see §4). The new CVEs are picked up automatically
@@ -101,7 +104,7 @@ for m in d['cve_matrix']:
 
 | Event | Date |
 |-------|------|
-| PostgreSQL 18.5 / 17.11 / 16.15 / 15.19 / 14.24 | Aug 13, 2026 |
+| PostgreSQL 18.6 / 17.11 / 16.15 / 15.19 / 14.24 | Aug 13, 2026 (18.5 skipped, never released → marked yanked) |
 | PostgreSQL 19.0 (add to `TRACKED_MAJORS`) | ~Sep/Oct 2026 |
 | PostgreSQL 14 EOL (flip `eol: true`) | Nov 2026 |
 

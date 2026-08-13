@@ -26,6 +26,7 @@ TRACKED_MAJORS = [
 
 # "Yanked" releases
 YANKED_VERSIONS = {
+    "18.5": "Never released, due to a regression discovered post-wrap.",
     "18.2": "Serious bugs introduced for the fix to some CVEs.",
     "17.8": "Serious bugs introduced for the fix to some CVEs.",
     "16.12": "Serious bugs introduced for the fix to some CVEs.",
@@ -84,7 +85,7 @@ KNOWN_EXPLOITS = [
 # ==========================================
 def get_all_minor_releases(major):
     """ NOTICE: TO BE UPGRADED every 3 months """
-    if major == "18": max_minor = 5
+    if major == "18": max_minor = 6
     elif major == "17": max_minor = 11
     elif major == "16": max_minor = 15
     elif major == "15": max_minor = 19

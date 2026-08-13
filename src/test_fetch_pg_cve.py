@@ -43,8 +43,8 @@ class TestParseAffectedRange(unittest.TestCase):
 
 class TestGetAllMinorReleases(unittest.TestCase):
     def test_active_majors(self):
-        self.assertEqual(f.get_all_minor_releases("18")[-1], "18.5")
-        self.assertEqual(len(f.get_all_minor_releases("18")), 6)
+        self.assertEqual(f.get_all_minor_releases("18")[-1], "18.6")
+        self.assertEqual(len(f.get_all_minor_releases("18")), 7)
         self.assertEqual(f.get_all_minor_releases("17")[-1], "17.11")
         self.assertEqual(f.get_all_minor_releases("16")[-1], "16.15")
         self.assertEqual(f.get_all_minor_releases("15")[-1], "15.19")

@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.3** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml)
+**Version 1.0.4** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -75,7 +75,8 @@ python src/validate_data.py docs/postgresql_cves.json
 
 ---
 
-## ✨ Recent Updates (v1.0.2 .. v1.0.3)
+## ✨ Recent Updates (v1.0.2 .. v1.0.4)
+- **Aug 2026 Data Update:** New minors `18.6 / 17.11 / 16.15 / 15.19 / 14.24` ingested. PostgreSQL 18.5 was skipped (never released, regression discovered post-wrap) and is flagged as a yanked release in the dashboard.
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
 - **Web Analytics:** Added tracking on GitHub Pages. [Umami](https://github.com/umami-software/umami) is a simple, fast, privacy-focused, Open Source Web Analytic tool.
 - **CI & Validation:** Added a GitHub Actions workflow with syntax checks, offline unit tests and JSON data validation. New `RELEASE_RUNBOOK.md` documents the release-day procedure.
