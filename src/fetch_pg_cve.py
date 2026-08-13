@@ -21,14 +21,7 @@ TRACKED_MAJORS = [
     {"version": "12", "eol": True},
     {"version": "11", "eol": True},
     {"version": "10", "eol": True},
-    {"version": "9.6", "eol": True},
-    {"version": "9.5", "eol": True},
-    {"version": "9.4", "eol": True},
-    {"version": "9.3", "eol": True},
-    {"version": "9.2", "eol": True},
-    {"version": "9.1", "eol": True},
-    {"version": "9.0", "eol": True},
-    {"version": "8.4", "eol": True}
+    {"version": "9.6", "eol": True}
 ]
 
 # "Yanked" releases
@@ -50,12 +43,15 @@ YANKED_VERSIONS = {
     "9.5.1": "Bug on text indexes optimization.",
     "9.5.0": "Bug on text indexes optimization.",
     "9.4.0": "Bug affecting 9.4 only.",
-    "9.3.3": "Serious affecting 9.3 only.",
-    "9.3.2": "Serious affecting 9.3 only.",
-    "9.3.1": "Serious affecting 9.3 only.",
-    "9.3.0": "Serious affecting 9.3 only.",
+    "9.3.3": "Serious bug affecting 9.3 only.",
+    "9.3.2": "Serious bug affecting 9.3 only.",
+    "9.3.1": "Serious bug affecting 9.3 only.",
+    "9.3.0": "Serious bug affecting 9.3 only and regression in pg_subtrans on hot standby.",
+    "9.2.5": "Regression in pg_subtrans on hot standby.",
     "9.2.1": "Planner regression in strict join clauses.",
     "9.2.0": "Planner regression in strict join clauses.",
+    "9.1.10": "Regression in pg_subtrans on hot standby.",
+    "9.0.14": "Regression in pg_subtrans on hot standby.",
     "6.6.6": "Diabolic bug."
 }
 
@@ -88,23 +84,16 @@ KNOWN_EXPLOITS = [
 # ==========================================
 def get_all_minor_releases(major):
     """ NOTICE: TO BE UPGRADED every 3 months """
-    if major == "18": max_minor = 4
-    elif major == "17": max_minor = 10
-    elif major == "16": max_minor = 14
-    elif major == "15": max_minor = 18
-    elif major == "14": max_minor = 23
+    if major == "18": max_minor = 5
+    elif major == "17": max_minor = 11
+    elif major == "16": max_minor = 15
+    elif major == "15": max_minor = 19
+    elif major == "14": max_minor = 24
     elif major == "13": max_minor = 23
     elif major == "12": max_minor = 22
     elif major == "11": max_minor = 22
     elif major == "10": max_minor = 23
     elif major == "9.6": return [f"9.6.{i}" for i in range(25)]  # one more
-    elif major == "9.5": return [f"9.5.{i}" for i in range(26)]
-    elif major == "9.4": return [f"9.4.{i}" for i in range(27)]
-    elif major == "9.3": return [f"9.3.{i}" for i in range(26)]
-    elif major == "9.2": return [f"9.2.{i}" for i in range(25)]
-    elif major == "9.1": return [f"9.1.{i}" for i in range(25)]
-    elif major == "9.0": return [f"9.0.{i}" for i in range(24)]
-    elif major == "8.4": return [f"8.4.{i}" for i in range(22)]
     else: max_minor = 23
     return [f"{major}.{i}" for i in range(max_minor + 1)]
 

@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.2**
+**Version 1.0.3**
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -18,7 +18,7 @@ The interactive dashboard is publicly available at the following address:
 
 ### Searching by Version (Deep-linking)
 You can query a specific PostgreSQL version directly via the `version` URL parameter. This is useful for linking directly to a version's security status from other documentation or reports:
-- `https://meob.github.io/PG_CVE/?version=15.3`
+- `https://meob.github.io/PG_CVE/?version=15.8`
 
 ---
 
@@ -51,10 +51,13 @@ python src/fetch_pg_cve.py
 ```
 This will generate/update the `docs/postgresql_cves.json` file.
 
+> 💡 **Note for Forks:** This site includes an Umami analytics script. If you host your own version, please remove the script or replace the `data-website-id` with your own to keep our traffic data separate.
+
 ---
 
-## ✨ Recent Updates (v1.0.2)
+## ✨ Recent Updates (v1.0.2 .. v1.0.3)
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
+- **Web Analytics:** Added tracking on GitHub Pages. [Umami](https://github.com/umami-software/umami) is a simple, fast, privacy-focused, Open Source Web Analytic tool.
 
 ---
 
