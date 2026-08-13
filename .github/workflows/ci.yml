@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    name: Syntax, tests and data validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check
+        run: python -m py_compile src/fetch_pg_cve.py src/validate_data.py src/test_fetch_pg_cve.py
+
+      - name: Unit tests
+        run: python -m unittest discover -s src -p "test_*.py"
+
+      - name: Validate data
+        run: python src/validate_data.py docs/postgresql_cves.json

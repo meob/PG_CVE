@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.3**
+**Version 1.0.3** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -24,6 +24,9 @@ You can query a specific PostgreSQL version directly via the `version` URL param
 
 ## 📂 Project Structure
 - `src/`: Contains the Python script for scraping and data generation.
+- `src/validate_data.py`: Structural validator for the generated JSON (used by CI).
+- `src/test_fetch_pg_cve.py`: Offline unit tests for the parser logic.
+- `.github/workflows/ci.yml`: CI checks (syntax, tests, validation) run on every push and pull request.
 - `docs/`: Contains the web dashboard (HTML/JS) and JSON data. This folder is ready to be served via **GitHub Pages**.
 - `requirements.txt`: Python dependencies required for the scraper.
 
@@ -53,11 +56,29 @@ This will generate/update the `docs/postgresql_cves.json` file.
 
 > 💡 **Note for Forks:** This site includes an Umami analytics script. If you host your own version, please remove the script or replace the `data-website-id` with your own to keep our traffic data separate.
 
+### 4. Release-Day Procedure
+When a new minor release + security advisory drops, follow the step-by-step checklist in [RELEASE_RUNBOOK.md](RELEASE_RUNBOOK.md): curate `YANKED_VERSIONS`/`KNOWN_EXPLOITS`, regenerate, verify, commit and publish.
+
+### 5. CI & Validation
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push and pull request:
+
+- **Syntax check:** `py_compile` on all Python sources.
+- **Unit tests:** offline tests (stdlib `unittest`) for the parser logic.
+- **Data validation:** `src/validate_data.py` verifies the structure of `docs/postgresql_cves.json` (consistent majors, well-formed CVE entries, unique CVE ids, valid CVSS range, non-empty yanked reasons).
+
+Run the same checks locally:
+```bash
+python -m py_compile src/fetch_pg_cve.py src/validate_data.py src/test_fetch_pg_cve.py
+python -m unittest discover -s src -p "test_*.py"
+python src/validate_data.py docs/postgresql_cves.json
+```
+
 ---
 
 ## ✨ Recent Updates (v1.0.2 .. v1.0.3)
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
 - **Web Analytics:** Added tracking on GitHub Pages. [Umami](https://github.com/umami-software/umami) is a simple, fast, privacy-focused, Open Source Web Analytic tool.
+- **CI & Validation:** Added a GitHub Actions workflow with syntax checks, offline unit tests and JSON data validation. New `RELEASE_RUNBOOK.md` documents the release-day procedure.
 
 ---
 
