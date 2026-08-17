@@ -167,6 +167,7 @@ h3 {
             <select id="minor-select" disabled>
                 <option value="">-- Select Major First --</option>
             </select>
+            <span id="release-date" style="color:#7f8c8d; font-size:0.9em; margin-left:5px;"></span>
         </div>
     </div>
 
@@ -214,7 +215,7 @@ Title: <b>PG CVE Dashboard</b><br />
 Level: Advanced <meter min="1" max="5" value="3">(3/5)</meter><br />
 Date: <meta itemprop="datePublished" content="2026-08-13"> 
       <meta itemprop="dateCreated"   content="2026-04-01">1st April 2026<br />
-Version: 1.0.4 - <meta itemprop="dateModified" content="2026-08-13">13th August 2026<br />
+Version: 1.0.5 - <meta itemprop="dateModified" content="2026-08-17">17th August 2026<br />
 Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
 </p>
 
@@ -225,6 +226,7 @@ Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
 
     const majorSelect = document.getElementById('major-select');
     const minorSelect = document.getElementById('minor-select');
+    const releaseDateEl = document.getElementById('release-date');
     const yankedAlert = document.getElementById('yanked-alert');
     const tableContainer = document.getElementById('table-container');
     const dbTitle = document.getElementById('db-title');
@@ -276,7 +278,8 @@ Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
     function handleMajorChange(majorVersion) {
         minorSelect.innerHTML = '<option value="">-- Select Minor --</option>';
         tableContainer.innerHTML = '';
-        yankedAlert.style.display = 'none'; // reset alert
+        yankedAlert.style.display = 'none';
+        releaseDateEl.textContent = '';
 
         if (!majorVersion) { minorSelect.disabled = true; return; }
 
@@ -309,7 +312,16 @@ function renderCVEs(major, minor) {
     tableContainer.innerHTML = '';
     yankedAlert.style.display = 'none';
 
-    if (!major || !minor) return;
+    if (!major || !minor) {
+        releaseDateEl.textContent = '';
+        return;
+    }
+
+    if (dbData.release_dates && dbData.release_dates[minor]) {
+        releaseDateEl.textContent = '(' + dbData.release_dates[minor] + ')';
+    } else {
+        releaseDateEl.textContent = '';
+    }
 
     if (dbData.yanked_versions && dbData.yanked_versions[minor]) {
         yankedAlert.textContent = dbData.yanked_versions[minor];

@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.4** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml)
+**Version 1.0.5** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -46,6 +46,7 @@ The script `src/fetch_pg_cve.py` contains sections that require human interventi
 - `YANKED_VERSIONS`: Versions that have critical bugs or regressions (e.g., data corruption).
 - `KNOWN_EXPLOITS`: A list of CVEs for which a public exploit is confirmed to exist.
 - `TRACKED_MAJORS`: List of supported major versions and EOL status.
+- `RELEASE_DATES`: Official release dates for each minor version, scraped from PostgreSQL documentation.
 
 ### 3. Data Generation
 Run the script every 3 months or upon the release of new security advisories:
@@ -64,7 +65,7 @@ A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push and pu
 
 - **Syntax check:** `py_compile` on all Python sources.
 - **Unit tests:** offline tests (stdlib `unittest`) for the parser logic.
-- **Data validation:** `src/validate_data.py` verifies the structure of `docs/postgresql_cves.json` (consistent majors, well-formed CVE entries, unique CVE ids, valid CVSS range, non-empty yanked reasons).
+- **Data validation:** `src/validate_data.py` verifies the structure of `docs/postgresql_cves.json` (consistent majors, well-formed CVE entries, unique CVE ids, valid CVSS range, non-empty yanked reasons, valid release dates).
 
 Run the same checks locally:
 ```bash
@@ -75,7 +76,8 @@ python src/validate_data.py docs/postgresql_cves.json
 
 ---
 
-## ✨ Recent Updates (v1.0.2 .. v1.0.4)
+## ✨ Recent Updates (v1.0.3 .. v1.0.5)
+- **v1.0.5 Release Dates:** Added official release dates for all tracked minor versions. Dates are displayed next to the minor version selector in the dashboard. The `release_dates` field is included in the generated JSON and validated by CI. `staff/scrape_release_dates.py` helper script created for date collection.
 - **Aug 2026 Data Update:** New minors `18.6 / 17.11 / 16.15 / 15.19 / 14.24` ingested. PostgreSQL 18.5 was skipped (never released, regression discovered post-wrap) and is flagged as a yanked release in the dashboard.
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
 - **Web Analytics:** Added tracking on GitHub Pages. [Umami](https://github.com/umami-software/umami) is a simple, fast, privacy-focused, Open Source Web Analytic tool.
@@ -87,7 +89,7 @@ python src/validate_data.py docs/postgresql_cves.json
 The following improvements are planned for future versions, maintaining the manual validation approach:
 
 1.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
-2.  **Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.
+2.  ~~**Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.~~ ✅ Done in v1.0.5 (release dates only).
 3.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
 4.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.
 5.  **Export Formats:** Add generation of reports in Markdown or CSV format.

@@ -11,6 +11,7 @@ CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$")
 VERSION_RE = re.compile(r"^\d+(\.\d+)*$")
 REQUIRED_CVE_FIELDS = ("id", "cvss", "known_exploit", "summary", "link")
 REQUIRED_MAJOR_FIELDS = ("version", "eol")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def validate(data):
@@ -97,6 +98,24 @@ def validate(data):
         for version, reason in yanked.items():
             if not isinstance(reason, str) or not reason.strip():
                 errors.append(f"yanked_versions[{version!r}]: reason must be a non-empty string.")
+
+    release_dates = data.get("release_dates", {})
+    if not isinstance(release_dates, dict):
+        errors.append("'release_dates' must be an object.")
+    else:
+        for version, date in release_dates.items():
+            if not VERSION_RE.match(version):
+                errors.append(f"release_dates: invalid version key {version!r}.")
+            if not isinstance(date, str) or not DATE_RE.match(date):
+                errors.append(f"release_dates[{version!r}]: date must be YYYY-MM-DD, got {date!r}.")
+        for major, minors in matrix.items():
+            if not isinstance(minors, dict):
+                continue
+            for minor in minors:
+                if minor in yanked:
+                    continue
+                if minor not in release_dates:
+                    errors.append(f"release_dates: missing entry for {minor!r}.")
 
     return errors
 
