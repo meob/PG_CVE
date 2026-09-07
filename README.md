@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.5** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+**Version 1.0.6** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -76,7 +76,8 @@ python src/validate_data.py docs/postgresql_cves.json
 
 ---
 
-## ✨ Recent Updates (v1.0.3 .. v1.0.5)
+## ✨ Recent Updates (v1.0.3 .. v1.0.6)
+- **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score (a +10 boost is applied to the sort key only; the displayed score stays the real CVSS). Bundled with the known-exploits update marking CVE-2026-14669 (PostgreSQL to_char heap buffer overflow, public RCE PoC) as exploited.
 - **v1.0.5 Release Dates:** Added official release dates for all tracked minor versions. Dates are displayed next to the minor version selector in the dashboard. The `release_dates` field is included in the generated JSON and validated by CI. `staff/scrape_release_dates.py` helper script created for date collection.
 - **Aug 2026 Data Update:** New minors `18.6 / 17.11 / 16.15 / 15.19 / 14.24` ingested. PostgreSQL 18.5 was skipped (never released, regression discovered post-wrap) and is flagged as a yanked release in the dashboard.
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
