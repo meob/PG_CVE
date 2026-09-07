@@ -77,7 +77,7 @@ python src/validate_data.py docs/postgresql_cves.json
 ---
 
 ## ✨ Recent Updates (v1.0.3 .. v1.0.6)
-- **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score (a +10 boost is applied to the sort key only; the displayed score stays the real CVSS). Bundled with the known-exploits update marking CVE-2026-14669 (PostgreSQL to_char heap buffer overflow, public RCE PoC) as exploited.
+- **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score. Bundled with the known-exploits update marking CVE-2026-14669 as exploited.
 - **v1.0.5 Release Dates:** Added official release dates for all tracked minor versions. Dates are displayed next to the minor version selector in the dashboard. The `release_dates` field is included in the generated JSON and validated by CI. `staff/scrape_release_dates.py` helper script created for date collection.
 - **Aug 2026 Data Update:** New minors `18.6 / 17.11 / 16.15 / 15.19 / 14.24` ingested. PostgreSQL 18.5 was skipped (never released, regression discovered post-wrap) and is flagged as a yanked release in the dashboard.
 - **Deep-linking Support:** Added the ability to select a specific version via URL parameter (e.g., `index.html?version=15.3`). The dashboard now automatically filters and renders the CVE status for the requested version upon loading.
@@ -86,8 +86,8 @@ python src/validate_data.py docs/postgresql_cves.json
 
 ---
 
-## 🚀 Proposed Optimizations (Roadmap)
-The following improvements are planned for future versions, maintaining the manual validation approach:
+## 🚀 Future Ideas
+Ideas under consideration — not necessarily planned. Some were implemented (see Recent Updates), others may never be:
 
 1.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
 2.  ~~**Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.~~ ✅ Done in v1.0.5 (release dates only).
