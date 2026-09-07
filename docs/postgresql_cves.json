@@ -404,7 +404,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -728,7 +728,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -1038,7 +1038,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -1313,7 +1313,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -1588,7 +1588,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -1769,7 +1769,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -2121,7 +2121,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -2445,7 +2445,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -2769,7 +2769,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -3086,7 +3086,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -3403,7 +3403,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -3713,7 +3713,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -4002,7 +4002,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -4277,7 +4277,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -4524,7 +4524,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -4771,7 +4771,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -4951,7 +4951,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -5338,7 +5338,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -5704,7 +5704,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -6063,7 +6063,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -6415,7 +6415,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -6760,7 +6760,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -7077,7 +7077,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -7394,7 +7394,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -7704,7 +7704,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -8014,7 +8014,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -8317,7 +8317,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -8599,7 +8599,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -8867,7 +8867,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -9107,7 +9107,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -9347,7 +9347,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -9520,7 +9520,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -9928,7 +9928,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -10336,7 +10336,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -10737,7 +10737,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -11124,7 +11124,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -11497,7 +11497,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -11849,7 +11849,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -12194,7 +12194,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -12532,7 +12532,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -12863,7 +12863,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -13166,7 +13166,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -13469,7 +13469,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -13765,7 +13765,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -14061,7 +14061,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -14350,7 +14350,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -14618,7 +14618,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -14872,7 +14872,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -15098,7 +15098,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -15324,7 +15324,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -15497,7 +15497,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -15926,7 +15926,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -16341,7 +16341,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -16756,7 +16756,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -17164,7 +17164,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -17572,7 +17572,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -17973,7 +17973,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -18374,7 +18374,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -18768,7 +18768,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -19148,7 +19148,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -19521,7 +19521,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -19873,7 +19873,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -20218,7 +20218,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -20556,7 +20556,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -20887,7 +20887,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -21190,7 +21190,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -21493,7 +21493,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -21789,7 +21789,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -22085,7 +22085,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -22374,7 +22374,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -22642,7 +22642,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -22896,7 +22896,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -23122,7 +23122,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },
@@ -23348,7 +23348,7 @@
         {
           "id": "CVE-2026-14669",
           "cvss": 8.8,
-          "known_exploit": false,
+          "known_exploit": true,
           "summary": "[Fixed in 18.5, 17.11, 16.15, 15.19, 14.24] PostgreSQL to_char heap buffer overflow executes arbitrary code",
           "link": "https://nvd.nist.gov/vuln/detail/CVE-2026-14669"
         },

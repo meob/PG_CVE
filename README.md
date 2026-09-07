@@ -104,7 +104,7 @@ This project was developed through iterative collaboration with generative AI to
 
 ## 🔗 Links and References
 The original project and the live version are curated by Meo:
-- [Live Dashboard](https://www.meo.bogliolo.name/white/oracle/pg_cve.htm)
+- [Live Dashboard](https://www.meo.bogliolo.name/white/oracle/pg_cve.htm) - Legacy CVE list (since PG 8.4)
 - [Your PostgreSQL Stinks!](https://www.meo.bogliolo.name/white/unix/trans.htm#post) - PostgreSQL Release Overview.
 - [Personal Website (EN)](https://www.meo.bogliolo.name/en/)
 

@@ -260,6 +260,7 @@ RELEASE_DATES = {
 
 # CVE with known Exploits
 KNOWN_EXPLOITS = [
+    "CVE-2026-14669",  # PoC Code Enables RCE in PostgreSQL
     "CVE-2025-1094",   # SQLi in psql/libpq, RCE; exploited in the wild
     "CVE-2024-10979",  # PL/Perl arbitrary code execution
     "CVE‑2023‑2454",   # Arbitrary code execution via CREATE SCHEMA
