@@ -53,7 +53,18 @@ silently destroys manual edits. Keep them in sync (see §3).
    the text `Never released, due to a regression discovered post-wrap.` so the
    dashboard warns users who try to select it.
 5. **Check `KNOWN_EXPLOITS`:** add any new CVE with a confirmed public exploit.
-   Keep the comment explaining the exploit.
+   Keep the comment explaining the exploit. Run the exploit finder first to
+   make sure no public PoC is missed:
+
+   ```bash
+   python src/find_exploits.py --years 3   # ~6 min, scans last 3 years of CVEs
+   ```
+
+   It sweeps CISA KEV (in-the-wild), GitHub level-0 repos named after each CVE
+   and (best-effort) Exploit-DB/Sploitus, prints the exploit publication date
+   for each finding and flags any candidate not yet in `KNOWN_EXPLOITS`. It
+   exits `1` when a candidate needs human review. See the module docstring for
+   options (`--all-cves`, `--max-cves`, `--token`, `--output`).
 6. **Regenerate the data** (see §4). The new CVEs are picked up automatically
    from the security page and distributed to every affected minor.
 7. **Verify** (see §5). In particular confirm the new CVEs appear under the new

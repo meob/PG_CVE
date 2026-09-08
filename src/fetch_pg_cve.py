@@ -260,22 +260,39 @@ RELEASE_DATES = {
 
 # CVE with known Exploits
 KNOWN_EXPLOITS = [
+    # 2026
     "CVE-2026-14669",  # PoC Code Enables RCE in PostgreSQL
+    "CVE-2026-14662",  # tsvector/tsquery integer wraparound -> OOB write, RCE; PoC 2026-09-01
+    "CVE-2026-6471",   # PostGREShell: logical-decoding dlopen() arbitrary file, RCE; PoC 2026-09-05
+    "CVE-2026-2005",   # pgcrypto heap buffer overflow -> RCE; PoC 2026-05-13
+    # 2025
     "CVE-2025-1094",   # SQLi in psql/libpq, RCE; exploited in the wild
+    "CVE-2025-8714",   # pg_dump untrusted data -> RCE in psql client; PoC 2025-10-20
+    "CVE-2025-8715",   # pg_dump newline injection -> RCE + SQLi as superuser; PoC 2025-10-20
+    # 2024
     "CVE-2024-10979",  # PL/Perl arbitrary code execution
-    "CVE‑2023‑2454",   # Arbitrary code execution via CREATE SCHEMA
+    "CVE-2024-0985",   # REFRESH MVIEW CONCURRENTLY privilege escalation; PoC 2024-03-19
+    # 2023
+    "CVE-2023-2454",   # Arbitrary code execution via CREATE SCHEMA
+    # 2022
     "CVE-2022-1552",   # Autovacuum privilege escalation; exploited in the wild
-    "CVE‑2020‑25695",  # SQL injection in PostgreSQL
+    # 2020
+    "CVE-2020-25695",  # SQL injection in PostgreSQL
+    # 2019
     "CVE-2019-10130",  # Tablesampler security bypass
-    "CVE‑2019‑9193",   # COPY TO/FROM PROGRAM, RCE; exploited in the wild; used in pentests
-    "CVE‑2018‑10915",  # PL/Perl arbitrary code execution; used in pentests
-    "CVE‑2018‑1115",   # COPY input validation
+    "CVE-2019-9193",   # COPY TO/FROM PROGRAM, RCE; exploited in the wild; used in pentests
+    # 2018
+    "CVE-2018-10915",  # PL/Perl arbitrary code execution; used in pentests
+    "CVE-2018-1115",   # COPY input validation
+    # 2017
     "CVE-2017-14798",  # SUSE privilege escalation (not a PG CVE)
-    "CVE‑2017‑8806",   # PL/Python code execution; used in pentests
-    "CVE‑2016‑5729",   # Buffer overflow in seg; used in pentests 
+    "CVE-2017-8806",   # PL/Python code execution; used in pentests
+    # 2016
+    "CVE-2016-5729",   # Buffer overflow in seg; used in pentests
+    # older
     "CVE-2009-0922",   # Multiple vulnerabilities
     "CVE-2005-0245",   # Conversion Encoding Remote DOS
-    "CVE‑1970‑0000"    # Epoch placeholder
+    "CVE-1970-0000"    # Epoch placeholder
 ]
 
 # Other CVE related to PostgreSQL
