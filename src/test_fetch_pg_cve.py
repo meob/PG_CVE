@@ -41,14 +41,24 @@ class TestParseAffectedRange(unittest.TestCase):
         self.assertFalse(other(f.Version("15.0")))
 
 
+class TestTrackedMajors(unittest.TestCase):
+    def test_pg14_is_eol(self):
+        majors = {item["version"]: item["eol"] for item in f.TRACKED_MAJORS}
+        self.assertTrue(majors["14"])
+
+    def test_pg19_not_tracked_yet(self):
+        majors = {item["version"] for item in f.TRACKED_MAJORS}
+        self.assertNotIn("19", majors)
+
+
 class TestGetAllMinorReleases(unittest.TestCase):
     def test_active_majors(self):
-        self.assertEqual(f.get_all_minor_releases("18")[-1], "18.6")
-        self.assertEqual(len(f.get_all_minor_releases("18")), 7)
-        self.assertEqual(f.get_all_minor_releases("17")[-1], "17.11")
-        self.assertEqual(f.get_all_minor_releases("16")[-1], "16.15")
-        self.assertEqual(f.get_all_minor_releases("15")[-1], "15.19")
-        self.assertEqual(f.get_all_minor_releases("14")[-1], "14.24")
+        self.assertEqual(f.get_all_minor_releases("18")[-1], "18.7")
+        self.assertEqual(len(f.get_all_minor_releases("18")), 8)
+        self.assertEqual(f.get_all_minor_releases("17")[-1], "17.12")
+        self.assertEqual(f.get_all_minor_releases("16")[-1], "16.16")
+        self.assertEqual(f.get_all_minor_releases("15")[-1], "15.20")
+        self.assertEqual(f.get_all_minor_releases("14")[-1], "14.25")
 
     def test_legacy_majors(self):
         self.assertEqual(len(f.get_all_minor_releases("9.6")), 25)

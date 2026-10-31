@@ -20,6 +20,10 @@ def validate(data):
     if data.get("database") != "PostgreSQL":
         errors.append("'database' must be 'PostgreSQL'.")
 
+    last_updated = data.get("last_updated")
+    if not isinstance(last_updated, str) or not DATE_RE.match(last_updated):
+        errors.append("'last_updated' must be a YYYY-MM-DD date string.")
+
     majors = data.get("major_versions")
     if not isinstance(majors, list) or not majors:
         errors.append("'major_versions' must be a non-empty list.")

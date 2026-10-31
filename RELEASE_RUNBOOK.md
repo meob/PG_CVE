@@ -12,13 +12,14 @@ losing manual curation work.
 ## 0. Why this exists
 
 The scraper (`src/fetch_pg_cve.py`) regenerates `docs/postgresql_cves.json` from
-scratch every run. Three things are NOT scraped and must be curated by hand:
+scratch every run. Four things are NOT scraped and must be curated by hand:
 
 | Knob | Location | Purpose |
 |------|----------|---------|
 | `TRACKED_MAJORS` | script header | which major branches exist + EOL flag |
 | `YANKED_VERSIONS` | script header | releases recalled/withdrawn (serious bugs) |
 | `KNOWN_EXPLOITS` | script header | CVEs with confirmed public exploits |
+| `RELEASE_DATES` | script header | official release date for every tracked minor |
 
 If these drift from the curated `docs/postgresql_cves.json`, a regeneration
 silently destroys manual edits. Keep them in sync (see §3).
@@ -28,10 +29,10 @@ silently destroys manual edits. Keep them in sync (see §3).
 ## 1. Pre-release preparation (a few days before)
 
 1. Read the current data in the JSON to know the baseline.
-2. Bump `max_minor` in `get_all_minor_releases()` (`src/fetch_pg_cve.py:88`)
+2. Bump `max_minor` in `get_all_minor_releases()` (`src/fetch_pg_cve.py:312`)
    for every **active** major so the upcoming minors exist in the matrix:
-   - current cycle → `18.6 / 17.11 / 16.15 / 15.19 / 14.24`
-   - example: `if major == "18": max_minor = 6`
+   - current cycle → `18.7 / 17.12 / 16.16 / 15.20 / 14.25`
+   - example: `if major == "18": max_minor = 7`
    - EOL majors keep their last value (e.g. `13` stays `23`).
 3. Sync `TRACKED_MAJORS` and `YANKED_VERSIONS` with the curated JSON, so a
    regeneration does not revert manual edits.
@@ -43,8 +44,10 @@ silently destroys manual edits. Keep them in sync (see §3).
    (or the news announcement). Note:
    - the new minor versions (should match the prepped ones);
    - the new CVE IDs + CVSS scores + affected/fixed ranges.
-2. **New major out?** (e.g. PostgreSQL 19 in Sept/Oct 2026) → add it to
-   `TRACKED_MAJORS` with `"eol": false`.
+2. **New major out?** (e.g. PostgreSQL 19 on November 19, 2026) → add it to
+   `TRACKED_MAJORS` with `"eol": false`, add its `RELEASE_DATES` entry, and add
+   an explicit branch in `get_all_minor_releases()` (e.g. `19 → max_minor = 0`)
+   so the default does not create phantom minors.
 3. **Major reached EOL?** → flip its `"eol"` flag to `true` in `TRACKED_MAJORS`.
 4. **Check `YANKED_VERSIONS`:** if the freshly released minor was pulled
    (e.g. "serious bugs introduced for the fix to some CVEs"), add it here with
@@ -69,8 +72,9 @@ silently destroys manual edits. Keep them in sync (see §3).
    from the security page and distributed to every affected minor.
 7. **Verify** (see §5). In particular confirm the new CVEs appear under the new
    minors and that the fixed-in ranges look right.
-8. **Bump version/date metadata** in `docs/index.html`
-   (`itemprop="dateModified"` + `Version:` + `Last updated`).
+8. **Bump version metadata** in `docs/index.html` (`Version:`); the
+   `dateModified` and "Last updated" values are now sourced automatically from
+   the generated `last_updated` field.
 9. **Commit and push.** GitHub Pages deploys `docs/` automatically; the live
    dashboard updates at <https://meob.github.io/PG_CVE/>.
 
@@ -111,13 +115,13 @@ for m in d['cve_matrix']:
 - New minors show CVEs; previous latest minors lost the just-fixed CVEs.
 - Spot-check a deep-link: `https://meob.github.io/PG_CVE/?version=<new-minor>`.
 
-## 6. Release calendar (as of Aug 2026)
+## 6. Release calendar (as of Nov 2026)
 
 | Event | Date |
 |-------|------|
 | PostgreSQL 18.6 / 17.11 / 16.15 / 15.19 / 14.24 | Aug 13, 2026 (18.5 skipped, never released → marked yanked) |
-| PostgreSQL 19.0 (add to `TRACKED_MAJORS`) | ~Sep/Oct 2026 |
-| PostgreSQL 14 EOL (flip `eol: true`) | Nov 2026 |
+| PostgreSQL 18.7 / 17.12 / 16.16 / 15.20 / 14.25 | Nov 12, 2026 (14.25 is the final PG14 release → flip `eol: true`) |
+| PostgreSQL 19.0 (add to `TRACKED_MAJORS`) | Nov 19, 2026 |
 
 ---
 

@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.0.7** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+**Version 1.1.0** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -20,6 +20,8 @@ The interactive dashboard is publicly available at the following address:
 You can query a specific PostgreSQL version directly via the `version` URL parameter. This is useful for linking directly to a version's security status from other documentation or reports:
 - `https://meob.github.io/PG_CVE/?version=15.8`
 
+The dashboard also provides a light/dark theme toggle (system preference by default, persisted locally) and a **Copy link** button that copies the deep link for the selected minor version.
+
 ---
 
 ## 📂 Project Structure
@@ -28,6 +30,7 @@ You can query a specific PostgreSQL version directly via the `version` URL param
 - `src/validate_data.py`: Structural validator for the generated JSON (used by CI).
 - `src/test_fetch_pg_cve.py`: Offline unit tests for the parser logic.
 - `src/test_find_exploits.py`: Offline unit tests for the exploit finder logic.
+- `src/test_validate_data.py`: Offline unit tests for the JSON structural validator.
 - `.github/workflows/ci.yml`: CI checks (syntax, tests, validation) run on every push and pull request.
 - `docs/`: Contains the web dashboard (HTML/JS) and JSON data. This folder is ready to be served via **GitHub Pages**.
 - `requirements.txt`: Python dependencies required for the scraper.
@@ -66,7 +69,7 @@ Run the script every 3 months or upon the release of new security advisories:
 ```bash
 python src/fetch_pg_cve.py
 ```
-This will generate/update the `docs/postgresql_cves.json` file.
+This will generate/update the `docs/postgresql_cves.json` file, including the `last_updated` timestamp displayed by the dashboard.
 
 > 💡 **Note for Forks:** This site includes an Umami analytics script. If you host your own version, please remove the script or replace the `data-website-id` with your own to keep our traffic data separate.
 
@@ -77,19 +80,20 @@ When a new minor release + security advisory drops, follow the step-by-step chec
 A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push and pull request:
 
 - **Syntax check:** `py_compile` on all Python sources.
-- **Unit tests:** offline tests (stdlib `unittest`) for the parser logic.
+- **Unit tests:** offline tests (stdlib `unittest`) for the parser, exploit finder and JSON validator logic.
 - **Data validation:** `src/validate_data.py` verifies the structure of `docs/postgresql_cves.json` (consistent majors, well-formed CVE entries, unique CVE ids, valid CVSS range, non-empty yanked reasons, valid release dates).
 
 Run the same checks locally:
 ```bash
-python -m py_compile src/fetch_pg_cve.py src/find_exploits.py src/validate_data.py src/test_fetch_pg_cve.py src/test_find_exploits.py
+python -m py_compile src/fetch_pg_cve.py src/find_exploits.py src/validate_data.py src/test_fetch_pg_cve.py src/test_find_exploits.py src/test_validate_data.py
 python -m unittest discover -s src -p "test_*.py"
 python src/validate_data.py docs/postgresql_cves.json
 ```
 
 ---
 
-## ✨ Recent Updates (v1.0.3 .. v1.0.7)
+## ✨ Recent Updates (v1.0.3 .. v1.1.0)
+- **v1.1.0 Dashboard & Nov 2026 Prep:** Dark mode with system-preference detection and persisted override, copy-link button for the current version deep link, and a dynamic `last_updated` timestamp sourced from the generated JSON. Prepared the Nov 2026 minors (`18.7 / 17.12 / 16.16 / 15.20 / 14.25`) and marked PostgreSQL 14 as end-of-life after its final release.
 - **v1.0.7 Exploits Update & Exploit Finder:** Five CVEs with public exploits added to `KNOWN_EXPLOITS`. Fixed a latent bug that silently disabled the `known_exploit` flag for some CVEs. New `src/find_exploits.py` verifier using CISA KEV, GitHub level-0 repos and Exploit-DB/Sploitus for PostgreSQL exploits.
 - **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score. Bundled with the known-exploits update marking CVE-2026-14669 as exploited.
 - **v1.0.5 Release Dates:** Added official release dates for all tracked minor versions. Dates are displayed next to the minor version selector in the dashboard. The `release_dates` field is included in the generated JSON and validated by CI.
@@ -103,7 +107,7 @@ python src/validate_data.py docs/postgresql_cves.json
 ## 🚀 Future Ideas
 Ideas under consideration — not necessarily planned. Some were implemented (see Recent Updates), others may never be:
 
-1.  **Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.
+1.  ~~**Dynamic Update Timestamp:** Automate the "Last updated" date in the HTML by pulling it from a new `last_updated` field in the generated JSON.~~ ✅ Done in v1.1.0.
 2.  ~~**Major Release Metadata:** Enrich the `major_versions` data with release dates and support status to provide context on the lifecycle of each major branch.~~ ✅ Done in v1.0.5 (release dates only).
 3.  **Semi-automatic Minor Auto-discovery:** Implement a function to suggest new minor versions detected on the official website.
 4.  **GitHub Actions Integration:** Create a workflow that runs scraping periodically and opens a *Pull Request* with new data.

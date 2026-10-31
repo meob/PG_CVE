@@ -1,5 +1,7 @@
 import json
 import re
+from datetime import datetime, timezone
+
 import requests
 from bs4 import BeautifulSoup
 from packaging.version import Version
@@ -16,7 +18,7 @@ TRACKED_MAJORS = [
     {"version": "17", "eol": False},
     {"version": "16", "eol": False},
     {"version": "15", "eol": False},
-    {"version": "14", "eol": False},
+    {"version": "14", "eol": True},
     {"version": "13", "eol": True},
     {"version": "12", "eol": True},
     {"version": "11", "eol": True},
@@ -202,6 +204,7 @@ RELEASE_DATES = {
     "14.22": "2026-02-26",
     "14.23": "2026-05-14",
     "14.24": "2026-08-13",
+    "14.25": "2026-11-12",
     "15.0": "2022-10-13",
     "15.1": "2022-11-10",
     "15.2": "2023-02-09",
@@ -222,6 +225,7 @@ RELEASE_DATES = {
     "15.17": "2026-02-26",
     "15.18": "2026-05-14",
     "15.19": "2026-08-13",
+    "15.20": "2026-11-12",
     "16.0": "2023-09-14",
     "16.1": "2023-11-09",
     "16.2": "2024-02-08",
@@ -238,6 +242,7 @@ RELEASE_DATES = {
     "16.13": "2026-02-26",
     "16.14": "2026-05-14",
     "16.15": "2026-08-13",
+    "16.16": "2026-11-12",
     "17.0": "2024-09-26",
     "17.1": "2024-11-14",
     "17.2": "2024-11-21",
@@ -250,12 +255,14 @@ RELEASE_DATES = {
     "17.9": "2026-02-26",
     "17.10": "2026-05-14",
     "17.11": "2026-08-13",
+    "17.12": "2026-11-12",
     "18.0": "2025-09-25",
     "18.1": "2025-11-13",
     "18.2": "2026-02-12",
     "18.3": "2026-02-26",
     "18.4": "2026-05-14",
     "18.6": "2026-08-13",
+    "18.7": "2026-11-12",
 }
 
 # CVE with known Exploits
@@ -305,11 +312,11 @@ KNOWN_EXPLOITS = [
 # ==========================================
 def get_all_minor_releases(major):
     """ NOTICE: TO BE UPGRADED every 3 months """
-    if major == "18": max_minor = 6
-    elif major == "17": max_minor = 11
-    elif major == "16": max_minor = 15
-    elif major == "15": max_minor = 19
-    elif major == "14": max_minor = 24
+    if major == "18": max_minor = 7
+    elif major == "17": max_minor = 12
+    elif major == "16": max_minor = 16
+    elif major == "15": max_minor = 20
+    elif major == "14": max_minor = 25
     elif major == "13": max_minor = 23
     elif major == "12": max_minor = 22
     elif major == "11": max_minor = 22
@@ -452,6 +459,7 @@ def fetch_and_parse_cves():
 
     return {
         "database": "PostgreSQL",
+        "last_updated": datetime.now(timezone.utc).date().isoformat(),
         "major_versions": major_list_for_json,
         "yanked_versions": YANKED_VERSIONS,
         "release_dates": RELEASE_DATES,
