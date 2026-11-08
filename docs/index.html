@@ -28,7 +28,7 @@
     <style>
         :root {
             color-scheme: light;
-            --bg-color: #f4f6f9;
+            --bg-color: #ffffff;
             --card-bg: #ffffff;
             --text-color: #333333;
             --text-muted: #6d6d6d;
@@ -128,10 +128,16 @@ h3 {
         .page-header { position: relative; }
         .page-header h1 { margin-top: 0; }
 
-        .theme-toggle {
+        .header-actions {
             position: absolute;
             top: 12px;
             right: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -164,6 +170,7 @@ h3 {
 
         .selector-box {
             background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px var(--shadow-color);
@@ -194,14 +201,15 @@ h3 {
         .copy-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--select-bg);
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border: 1px solid var(--toggle-border);
+            border-radius: 50%;
+            background-color: var(--toggle-bg);
+            color: var(--toggle-text);
+            box-shadow: 0 2px 4px var(--shadow-color);
             cursor: pointer;
         }
         .copy-link:hover:not(:disabled) {
@@ -209,8 +217,22 @@ h3 {
             color: var(--heading-color);
         }
         .copy-link:disabled { opacity: 0.5; cursor: not-allowed; }
-        .copy-link svg { width: 16px; height: 16px; }
-        .copy-status { min-width: 72px; color: var(--cvss-low); font-size: 0.9em; font-weight: 600; }
+        .copy-link svg { width: 20px; height: 20px; }
+        .copy-link .icon-check { display: none; }
+        .copy-link.is-copied .icon-copy { display: none; }
+        .copy-link.is-copied .icon-check { display: inline; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
 
         .threat-update { text-align: right; }
 
@@ -230,6 +252,7 @@ h3 {
             width: 100%;
             border-collapse: collapse;
             background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 4px var(--shadow-color);
@@ -268,7 +291,7 @@ h3 {
 
         .cve-link { color: var(--link-color); text-decoration: none; font-weight: 600; }
         .cve-link:hover { text-decoration: underline; }
-        .no-data { text-align: center; padding: 30px; color: var(--subtitle-color); background-color: var(--card-bg); border-radius: 8px; }
+        .no-data { text-align: center; padding: 30px; color: var(--subtitle-color); background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; }
 
         @media (prefers-reduced-motion: no-preference) {
             body, .selector-box, table, th, td, select, .yanked-banner, .no-data, .theme-toggle, .copy-link {
@@ -276,9 +299,16 @@ h3 {
             }
         }
 
+        @media (max-width: 1024px) {
+            .header-actions {
+                position: static;
+                justify-content: flex-end;
+                margin-bottom: 10px;
+            }
+        }
+
         @media (max-width: 600px) {
-            .page-header h1 { font-size: 2.2em; padding: 0 48px; }
-            .theme-toggle { top: 0; }
+            .page-header h1 { font-size: 2.2em; padding: 0; }
         }
     </style>
 </head>
@@ -286,15 +316,27 @@ h3 {
 
 <div class="container">
     <header class="page-header">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-            </svg>
-        </button>
+        <div class="header-actions">
+            <button id="copy-link" class="copy-link" type="button" aria-label="Copy link" title="Copy a link to the selected version" disabled>
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+            </button>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+            </button>
+            <span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
+        </div>
         <h1 id="db-title">PG CVE Dashboard</h1>
         <p class="subtitle">Quick security check for database deployments. Critical warnings highlighted in red.</p>
     </header>
@@ -313,17 +355,6 @@ h3 {
                 <option value="">-- Select Major First --</option>
             </select>
             <span id="release-date" class="release-date"></span>
-        </div>
-
-        <div class="input-group">
-            <button id="copy-link" class="copy-link" type="button" title="Copy a link to the selected version" disabled>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-                <span>Copy link</span>
-            </button>
-            <span id="copy-status" class="copy-status" role="status" aria-live="polite"></span>
         </div>
     </div>
 
@@ -448,16 +479,29 @@ Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
         history.replaceState(null, '', url);
     }
 
+    const COPY_TITLE = 'Copy a link to the selected version';
+
     function updateCopyButton() {
         copyLink.disabled = !minorSelect.value;
-        if (!minorSelect.value) copyStatus.textContent = '';
+        if (!minorSelect.value) {
+            copyStatus.textContent = '';
+            copyLink.classList.remove('is-copied');
+            copyLink.setAttribute('aria-label', 'Copy link');
+            copyLink.title = COPY_TITLE;
+        }
     }
 
-    function showCopyStatus(message) {
+    function showCopyStatus(message, success) {
         copyStatus.textContent = message;
+        copyLink.classList.toggle('is-copied', Boolean(success));
+        copyLink.setAttribute('aria-label', success ? message : 'Copy link');
+        copyLink.title = message;
         window.clearTimeout(copyStatusTimer);
         copyStatusTimer = window.setTimeout(() => {
             copyStatus.textContent = '';
+            copyLink.classList.remove('is-copied');
+            copyLink.setAttribute('aria-label', 'Copy link');
+            copyLink.title = COPY_TITLE;
         }, 2000);
     }
 
@@ -480,9 +524,9 @@ Author: <span itemprop="editor">mail [AT] meo.bogliolo.name</span><br />
                 document.execCommand('copy');
                 textarea.remove();
             }
-            showCopyStatus('Copied!');
+            showCopyStatus('Copied!', true);
         } catch (error) {
-            showCopyStatus('Copy failed');
+            showCopyStatus('Copy failed', false);
         }
     });
 

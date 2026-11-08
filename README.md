@@ -20,7 +20,7 @@ The interactive dashboard is publicly available at the following address:
 You can query a specific PostgreSQL version directly via the `version` URL parameter. This is useful for linking directly to a version's security status from other documentation or reports:
 - `https://meob.github.io/PG_CVE/?version=15.8`
 
-The dashboard also provides a light/dark theme toggle (system preference by default, persisted locally) and a **Copy link** button that copies the deep link for the selected minor version.
+The dashboard also provides a light/dark theme toggle (system preference by default, persisted locally, white background in light mode) and a **Copy link** button in the header, next to the theme toggle, that copies the deep link for the selected minor version.
 
 ---
 
@@ -93,7 +93,7 @@ python src/validate_data.py docs/postgresql_cves.json
 ---
 
 ## ✨ Recent Updates (v1.0.3 .. v1.1.0)
-- **v1.1.0 Dashboard & Nov 2026 Prep:** Dark mode with system-preference detection and persisted override, copy-link button for the current version deep link, and a dynamic `last_updated` timestamp sourced from the generated JSON. Prepared the Nov 2026 minors (`18.7 / 17.12 / 16.16 / 15.20 / 14.25`) and marked PostgreSQL 14 as end-of-life after its final release.
+- **v1.1.0 Dashboard & Nov 2026 Prep:** Dark mode with system-preference detection and persisted override, white background in light mode with subtle card borders, a header copy-link icon next to the theme toggle, and a dynamic `last_updated` timestamp sourced from the generated JSON. Prepared the Nov 2026 minors (`18.7 / 17.12 / 16.16 / 15.20 / 14.25`) and marked PostgreSQL 14 as end-of-life after its final release.
 - **v1.0.7 Exploits Update & Exploit Finder:** Five CVEs with public exploits added to `KNOWN_EXPLOITS`. Fixed a latent bug that silently disabled the `known_exploit` flag for some CVEs. New `src/find_exploits.py` verifier using CISA KEV, GitHub level-0 repos and Exploit-DB/Sploitus for PostgreSQL exploits.
 - **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score. Bundled with the known-exploits update marking CVE-2026-14669 as exploited.
 - **v1.0.5 Release Dates:** Added official release dates for all tracked minor versions. Dates are displayed next to the minor version selector in the dashboard. The `release_dates` field is included in the generated JSON and validated by CI.
