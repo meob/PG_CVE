@@ -1,5 +1,5 @@
 # 🐘 PG_CVE - PostgreSQL CVE & Release Intelligence
-**Version 1.1.0** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+**Version 1.1.1** &nbsp; [![CI](https://github.com/meob/PG_CVE/actions/workflows/ci.yml/badge.svg)](https://github.com/meob/PG_CVE/actions/workflows/ci.yml) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 **PG_CVE** is a lightweight tool designed to provide an immediate overview of CVEs (Common Vulnerabilities and Exposures) and the stability of PostgreSQL releases.
 
@@ -14,7 +14,7 @@
 
 ## 🌐 Live Dashboard & Usage
 The interactive dashboard is publicly available at the following address:
-👉 **[PostgreSQL CVE Dashboard](https://meob.github.io/PG_CVE/)**
+👉 **[PostgreSQL CVE Dashboard](https://meob.github.io/PG_CVE/?version=15.8)**
 
 ### Searching by Version (Deep-linking)
 You can query a specific PostgreSQL version directly via the `version` URL parameter. This is useful for linking directly to a version's security status from other documentation or reports:
@@ -92,7 +92,8 @@ python src/validate_data.py docs/postgresql_cves.json
 
 ---
 
-## ✨ Recent Updates (v1.0.3 .. v1.1.0)
+## ✨ Recent Updates (v1.0.3 .. v1.1.1)
+- **v1.1.1 Nov 2026 Data Update:** Ingested the 52 CVEs from the November 2026 security advisory, fixed in `18.7 / 17.12 / 16.16 / 15.20 / 14.25`. PostgreSQL 14 reached end-of-life with its final release (14.25).
 - **v1.1.0 Dashboard & Nov 2026 Prep:** Dark mode with system-preference detection and persisted override, white background in light mode with subtle card borders, a header copy-link icon next to the theme toggle, and a dynamic `last_updated` timestamp sourced from the generated JSON. Prepared the Nov 2026 minors (`18.7 / 17.12 / 16.16 / 15.20 / 14.25`) and marked PostgreSQL 14 as end-of-life after its final release.
 - **v1.0.7 Exploits Update & Exploit Finder:** Five CVEs with public exploits added to `KNOWN_EXPLOITS`. Fixed a latent bug that silently disabled the `known_exploit` flag for some CVEs. New `src/find_exploits.py` verifier using CISA KEV, GitHub level-0 repos and Exploit-DB/Sploitus for PostgreSQL exploits.
 - **v1.0.6 Exploit-aware Ordering & Exploits Update:** CVEs with a known public exploit are now ranked first in the dashboard, ahead of CVEs sorted by raw CVSS score. Bundled with the known-exploits update marking CVE-2026-14669 as exploited.
